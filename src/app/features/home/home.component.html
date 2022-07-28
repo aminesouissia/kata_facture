@@ -1,0 +1,125 @@
+<h1>Pacifica KATA</h1>
+
+<!-- ******************************** Formulaire de saisie ***************************** -->
+
+<form [formGroup]="tableForm" (ngSubmit)="addArticle()">
+  Description:
+  <input
+    type="text"
+    name="description"
+    placeholder="***Livres***"
+    formControlName="description"
+  /><br /><br />
+  Prix unitaire:
+  <input
+    type="text"
+    name="prix_unitaire"
+    size="4"
+    formControlName="prix_unitaire"
+  />€<br /><br />
+  Type:
+  <select formControlName="type">
+    <option *ngFor="let option of selectOption" [ngValue]="option">
+      {{ option }}
+    </option></select
+  ><br /><br />
+  Quantitees:
+  <input
+    type="number"
+    name="quantitees"
+    min="0"
+    max="10"
+    formControlName="quantitees"
+  />
+  <br /><br />
+  Importé:
+  <input
+    type="radio"
+    id="oui"
+    name="importe"
+    value="oui"
+    formControlName="importe"
+  />
+  <label for="oui">Oui</label>
+  <input
+    type="radio"
+    id="non"
+    name="importe"
+    value="non"
+    formControlName="importe"
+  />
+  <label for="non">Non</label><br /><br />
+
+  Taxes:
+  <input
+    type="number"
+    name="taxes"
+    [value]="getTaxesTt() | number: '.2-2'"
+    formControlName="taxes"
+  />
+  €<br /><br />
+  Total HT:
+  <input
+    type="number"
+    name="total_ht"
+    [value]="getTotalHT() | number: '.2-2'"
+    formControlName="total_ht"
+  />€<br /><br />
+  Total TTC:
+  <input
+    type="number"
+    name="total_ttc"
+    [value]="getTotalTTC() | number: '.2-2'"
+    formControlName="total_ttc"
+  />€<br /><br />
+  <button type="submit" class="btn">Ajouter Article</button>
+  <button type="button" (click)="ResetForm()">Annuler</button><br /><br /><br />
+
+  <!-- ********************************* Table d'affichage ***************************** -->
+  
+  <div *ngIf="articleList.length > 0">
+    <div id="table" #table>
+      <table border="1">
+        <thead>
+          <tr>
+            <td class="withoutBorder" colspan="6"></td>
+            <td colspan="3">Paris , Le {{ date | date: "dd.MM.yyyy" }}</td>
+          </tr>
+          <tr>
+            <th *ngFor="let headers of headers">{{ headers }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let article of articleList">
+            <td>{{ article.description }}</td>
+            <td>{{ article.prix_unitaire }}€</td>
+            <td>{{ article.type }}</td>
+            <td>{{ article.quantitees }}</td>
+            <td>{{ article.importe }}</td>
+            <td>{{ article.taxes }}€</td>
+            <td>{{ article.total_ht }}€</td>
+            <td>{{ article.total_ttc }}€</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6"></td>
+            <td colspan="2">Prix Total HT</td>
+            <td>{{ prix_Total_ht | number: ".2-2" }}</td>
+          </tr>
+          <tr>
+            <td colspan="6"></td>
+            <td colspan="2">Total Taxes</td>
+            <td>{{ total_Taxes | number: ".2-2" }}</td>
+          </tr>
+          <tr>
+            <td colspan="6"></td>
+            <td colspan="2">Prix Total TTC</td>
+            <td>{{ prix_Total_ttc | number: ".2-2" }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <button (click)="generatePdf()">Générer la Facture</button>
+  </div>
+</form>
