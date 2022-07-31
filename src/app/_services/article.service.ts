@@ -6,7 +6,7 @@ export class ArticleService {
   
   articleList: Article[] = [];
   
-  getArticles() {
+  getArticles(): Article[] {
     return this.articleList;
   }
 }

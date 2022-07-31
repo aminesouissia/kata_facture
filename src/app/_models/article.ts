@@ -8,7 +8,4 @@ export interface Article {
   taxes: number;
   total_ht: number;
   total_ttc: number;
- // total_Taxes: number;
- // prix_Total_ht: number;
- // prix_Total_ttc: number;
 }

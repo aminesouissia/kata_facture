@@ -83,7 +83,7 @@
         <thead>
           <tr>
             <td class="withoutBorder" colspan="6"></td>
-            <td colspan="3">Paris , Le {{ date | date: "dd.MM.yyyy" }}</td>
+            <td colspan="2"> <i>Paris , Le {{ date | date: "dd.MM.yyyy" }}</i></td>
           </tr>
           <tr>
             <th *ngFor="let headers of headers">{{ headers }}</th>
@@ -104,17 +104,17 @@
         <tfoot>
           <tr>
             <td colspan="6"></td>
-            <td colspan="2">Prix Total HT</td>
+            <td ><b>Prix Total HT</b></td>
             <td>{{ prix_Total_ht | number: ".2-2" }}</td>
           </tr>
           <tr>
             <td colspan="6"></td>
-            <td colspan="2">Total Taxes</td>
+            <td><b>Total Taxes</b></td>
             <td>{{ total_Taxes | number: ".2-2" }}</td>
           </tr>
           <tr>
             <td colspan="6"></td>
-            <td colspan="2">Prix Total TTC</td>
+            <td><b>Prix Total TTC</b></td>
             <td>{{ prix_Total_ttc | number: ".2-2" }}</td>
           </tr>
         </tfoot>
