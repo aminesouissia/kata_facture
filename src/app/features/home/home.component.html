@@ -76,8 +76,11 @@
   <button type="button" (click)="ResetForm()">Annuler</button><br /><br /><br />
 
   <!-- ********************************* Table d'affichage ***************************** -->
-  
-  <div *ngIf="articleList.length > 0">
+<ng-template #errors>
+ <div>{{errorMessage}}</div> 
+</ng-template> 
+
+ <div *ngIf="articleList.length > 0; else errors">
     <div id="table" #table>
       <table border="1">
         <thead>

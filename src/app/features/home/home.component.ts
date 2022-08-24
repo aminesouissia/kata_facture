@@ -38,9 +38,13 @@ export class HomeComponent implements OnInit {
    * Valeur de la totale toute taxe comprise
    */
   prix_Total_ttc = 0;
+   /**
+   * 
+   */
+  errorMessage : string;
   /**
    * Valeurs de l'entete de la table
-   */
+   */ 
   headers = [
     'Description',
     'Prix',
@@ -65,7 +69,14 @@ export class HomeComponent implements OnInit {
    * Initialisation du composant
    */
   ngOnInit(): void {
-    this.articleList = this.articleService.getArticles();
+    this.articleService.getArticles().subscribe({
+      next:(data) => {
+        this.articleList = data;
+      },
+      error : (err) => {
+        this.errorMessage = err;
+      }
+    });
     this.tableForm = this.fb.group({
       description: ['', Validators.required],
       prix_unitaire: [0, Validators.required],

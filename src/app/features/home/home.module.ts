@@ -4,7 +4,6 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ArticleService } from 'src/app/_services/article.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -12,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   providers: [ArticleService],
 })
